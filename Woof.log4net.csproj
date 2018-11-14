@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Copyright>(c)2018 by CodeDog Ltd.</Copyright>
+    <PackageLicenseUrl>https://en.wikipedia.org/wiki/MIT_License</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/HTD/Woof.log4net</PackageProjectUrl>
+    <Authors>Adam Łyskawa</Authors>
+    <Company>CodeDog Ltd.</Company>
+    <Description>Assynchronous (non-blocking) wrapper for log4net logs.
+Public methods will return before an appender is called.</Description>
+    <PackageReleaseNotes />
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.8" />
+  </ItemGroup>
+</Project>
