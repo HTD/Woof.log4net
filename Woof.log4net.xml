@@ -1,0 +1,372 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Woof.log4net</name>
+    </assembly>
+    <members>
+        <member name="T:Woof.log4net.AsyncLog">
+            <summary>
+            Assynchronous (non-blocking) wrapper for log4net logs.
+            Public methods will return before appender is called.
+            This method must be disposed to ensure all events are properly written to appenders.
+            </summary>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.#ctor(log4net.ILog)">
+            <summary>
+            Creates asynchronous version of provided base log.
+            </summary>
+            <param name="baseLog">Synchronous log.</param>
+        </member>
+        <member name="F:Woof.log4net.AsyncLog.baseLog">
+            <summary>
+            Base log.
+            </summary>
+        </member>
+        <member name="F:Woof.log4net.AsyncLog.t">
+            <summary>
+            Dequeueing timer.
+            </summary>
+        </member>
+        <member name="F:Woof.log4net.AsyncLog.q">
+            <summary>
+            Logging events queue.
+            </summary>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.#ctor">
+            <summary>
+            Initializes timer and queue.
+            </summary>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.Timer_Elapsed(System.Object,System.Timers.ElapsedEventArgs)">
+            <summary>
+            Flushes events.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.Dispose">
+            <summary>
+            Disposes the timer and flushes all remaining events.
+            </summary>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.Finalize">
+            <summary>
+            Finalizer checks if there are no discarded events and throws exception if they are.
+            </summary>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.Signal(log4net.Core.Level,System.Int32,System.String)">
+            <summary>
+            Sends a signal event.
+            </summary>
+            <param name="level">Level of logging event.</param>
+            <param name="id">Event type identifier.</param>
+            <param name="message">The application supplied message.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.Signal(log4net.Core.Level,System.Int32,System.String,log4net.Util.PropertiesDictionary)">
+            <summary>
+            Sends a signal event.
+            </summary>
+            <param name="level">Level of logging event.</param>
+            <param name="id">Event type identifier.</param>
+            <param name="message">The application supplied message.</param>
+            <param name="properties">Additional event properties.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.Signal(log4net.Core.Level,System.Int32,System.String,System.Exception)">
+            <summary>
+            Sends a signal event.
+            </summary>
+            <param name="level">Level of logging event.</param>
+            <param name="id">Event type identifier.</param>
+            <param name="message">The application supplied message.</param>
+            <param name="exception">Application exception.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.Signal(log4net.Core.Level,System.Int32,System.String,log4net.Util.PropertiesDictionary,System.Exception)">
+            <summary>
+            Sends a signal event.
+            </summary>
+            <param name="level">Level of logging event.</param>
+            <param name="id">Event type identifier.</param>
+            <param name="message">The application supplied message.</param>
+            <param name="properties">Additional event properties.</param>
+            <param name="exception">Application exception.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.IsLevelEnabled(log4net.Core.Level)">
+            <summary>
+            Determines if specified logging level is enabled.
+            </summary>
+            <param name="level">Logging level.</param>
+            <returns>True if it is enabled in current log.</returns>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.GetEvent(log4net.Core.Level,System.String,System.Int32,log4net.Util.PropertiesDictionary,System.Exception)">
+            <summary>
+            Creates a new logging event.
+            </summary>
+            <param name="level">Level of logging event.</param>
+            <param name="message">The application supplied message.</param>
+            <param name="eventId">Optional event type identifier.</param>
+            <param name="properties">Optional event properties.</param>
+            <param name="exception">Optional exception.</param>
+            <returns>New logging event.</returns>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.Debug(System.Object)">
+            <summary>
+            Logs a debug message.
+            </summary>
+            <param name="message">Message content.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.Debug(System.Object,System.Exception)">
+            <summary>
+            Logs a debug message and an exception.
+            </summary>
+            <param name="message">Message content.</param>
+            <param name="exception">Application exception.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.DebugFormat(System.String,System.Object[])">
+            <summary>
+            Logs a formatted debug message.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="args">An object array that contains zero or more objects to format.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.DebugFormat(System.String,System.Object)">
+            <summary>
+            Logs a formatted debug message.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="arg0">The first object to format.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.DebugFormat(System.String,System.Object,System.Object)">
+            <summary>
+            Logs a formatted debug message.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="arg0">The first object to format.</param>
+            <param name="arg1">The second object to format.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.DebugFormat(System.String,System.Object,System.Object,System.Object)">
+            <summary>
+            Logs a formatted debug message.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="arg0">The first object to format.</param>
+            <param name="arg1">The second object to format.</param>
+            <param name="arg2">The third object to format.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.DebugFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Logs a formatted debug message.
+            </summary>
+            <param name="provider">An object that supplies culture-specific formatting information.</param>
+            <param name="format">A composite format string.</param>
+            <param name="args">An object array that contains zero or more objects to format.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.Info(System.Object)">
+            <summary>
+            Logs an informational message.
+            </summary>
+            <param name="message">Message content.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.Info(System.Object,System.Exception)">
+            <summary>
+            Logs an informational message and an exception.
+            </summary>
+            <param name="message">Message content.</param>
+            <param name="exception">Application exception.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.InfoFormat(System.String,System.Object[])">
+            <summary>
+            Logs a formatted informational message.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="args">An object array that contains zero or more objects to format.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.InfoFormat(System.String,System.Object)">
+            <summary>
+            Logs a formatted informational message.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="arg0">The first object to format.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.InfoFormat(System.String,System.Object,System.Object)">
+            <summary>
+            Logs a formatted informational message.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="arg0">The first object to format.</param>
+            <param name="arg1">The second object to format.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.InfoFormat(System.String,System.Object,System.Object,System.Object)">
+            <summary>
+            Logs a formatted informational message.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="arg0">The first object to format.</param>
+            <param name="arg1">The second object to format.</param>
+            <param name="arg2">The third object to format.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.InfoFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Logs a formatted informational message.
+            </summary>
+            <param name="provider">An object that supplies culture-specific formatting information.</param>
+            <param name="format">A composite format string.</param>
+            <param name="args">An object array that contains zero or more objects to format.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.Warn(System.Object)">
+            <summary>
+            Logs a warning message.
+            </summary>
+            <param name="message">Message content.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.Warn(System.Object,System.Exception)">
+            <summary>
+            Logs a warning message and an exception.
+            </summary>
+            <param name="message">Message content.</param>
+            <param name="exception">Application exception.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.WarnFormat(System.String,System.Object[])">
+            <summary>
+            Logs a formatted warning message.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="args">An object array that contains zero or more objects to format.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.WarnFormat(System.String,System.Object)">
+            <summary>
+            Logs a formatted warning message.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="arg0">The first object to format.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.WarnFormat(System.String,System.Object,System.Object)">
+            <summary>
+            Logs a formatted warning message.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="arg0">The first object to format.</param>
+            <param name="arg1">The second object to format.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.WarnFormat(System.String,System.Object,System.Object,System.Object)">
+            <summary>
+            Logs a formatted warning message.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="arg0">The first object to format.</param>
+            <param name="arg1">The second object to format.</param>
+            <param name="arg2">The third object to format.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.WarnFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Logs a formatted warning message.
+            </summary>
+            <param name="provider">An object that supplies culture-specific formatting information.</param>
+            <param name="format">A composite format string.</param>
+            <param name="args">An object array that contains zero or more objects to format.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.Error(System.Object)">
+            <summary>
+            Logs an error message.
+            </summary>
+            <param name="message">Message content.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.Error(System.Object,System.Exception)">
+            <summary>
+            Logs an error message and an exception.
+            </summary>
+            <param name="message">Message content.</param>
+            <param name="exception">Application exception.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.ErrorFormat(System.String,System.Object[])">
+            <summary>
+            Logs a formatted error message.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="args">An object array that contains zero or more objects to format.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.ErrorFormat(System.String,System.Object)">
+            <summary>
+            Logs a formatted error message.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="arg0">The first object to format.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.ErrorFormat(System.String,System.Object,System.Object)">
+            <summary>
+            Logs a formatted error message.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="arg0">The first object to format.</param>
+            <param name="arg1">The second object to format.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.ErrorFormat(System.String,System.Object,System.Object,System.Object)">
+            <summary>
+            Logs a formatted error message.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="arg0">The first object to format.</param>
+            <param name="arg1">The second object to format.</param>
+            <param name="arg2">The third object to format.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.ErrorFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Logs a formatted error message.
+            </summary>
+            <param name="provider">An object that supplies culture-specific formatting information.</param>
+            <param name="format">A composite format string.</param>
+            <param name="args">An object array that contains zero or more objects to format.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.Fatal(System.Object)">
+            <summary>
+            Logs a fatal error message.
+            </summary>
+            <param name="message">Message content.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.Fatal(System.Object,System.Exception)">
+            <summary>
+            Logs a fatal error message and an exception.
+            </summary>
+            <param name="message">Message content.</param>
+            <param name="exception">Application exception.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.FatalFormat(System.String,System.Object[])">
+            <summary>
+            Logs a formatted fatal error message.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="args">An object array that contains zero or more objects to format.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.FatalFormat(System.String,System.Object)">
+            <summary>
+            Logs a formatted fatal error message.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="arg0">The first object to format.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.FatalFormat(System.String,System.Object,System.Object)">
+            <summary>
+            Logs a formatted fatal error message.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="arg0">The first object to format.</param>
+            <param name="arg1">The second object to format.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.FatalFormat(System.String,System.Object,System.Object,System.Object)">
+            <summary>
+            Logs a formatted fatal error message.
+            </summary>
+            <param name="format">A composite format string.</param>
+            <param name="arg0">The first object to format.</param>
+            <param name="arg1">The second object to format.</param>
+            <param name="arg2">The third object to format.</param>
+        </member>
+        <member name="M:Woof.log4net.AsyncLog.FatalFormat(System.IFormatProvider,System.String,System.Object[])">
+            <summary>
+            Logs a formatted fatal error message.
+            </summary>
+            <param name="provider">An object that supplies culture-specific formatting information.</param>
+            <param name="format">A composite format string.</param>
+            <param name="args">An object array that contains zero or more objects to format.</param>
+        </member>
+    </members>
+</doc>

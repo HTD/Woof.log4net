@@ -11,6 +11,10 @@ Public methods will return before an appender is called.
 The messages are queued and their sequence is always preserved.</Description>
     <PackageReleaseNotes />
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Source\Woof\Woof.log4net\Woof.log4net.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="log4net" Version="2.0.8" />
   </ItemGroup>
