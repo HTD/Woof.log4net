@@ -7,7 +7,8 @@
     <Authors>Adam Łyskawa</Authors>
     <Company>CodeDog Ltd.</Company>
     <Description>Assynchronous (non-blocking) wrapper for log4net logs.
-Public methods will return before an appender is called.</Description>
+Public methods will return before an appender is called.
+The messages are queued and their sequence is always preserved.</Description>
     <PackageReleaseNotes />
   </PropertyGroup>
   <ItemGroup>
